@@ -13,7 +13,25 @@ class BCIT_WPD_Restrict_Purchase_Meta{
 		add_action( 'load-post.php', array( $this, 'metaboxes_setup' ) );
 		add_action( 'load-post-new.php', array( $this, 'metaboxes_setup' ) );
 
+		add_action( 'wp', array( $this, 'limit_purchase_button' ) );
+
 	} // __construct
+
+	/**
+	 * Remove the purchase button if product is restricted
+	 *
+	 * @since 1.0
+	 * @author Curtis
+	 */
+	public function limit_purchase_button(){
+
+		$limited_product = get_queried_object();
+
+		echo '<pre>';
+		print_r( $limited_product );
+		echo '</pre>';
+
+	} // limit_purchase_button
 
 	/**
 	 * Adds our actions to start our metaboxes
