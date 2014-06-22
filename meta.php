@@ -55,7 +55,14 @@ class BCIT_WPD_Restrict_Purchase_Meta{
 
 		wp_nonce_field( basename( __FILE__ ), 'bcit_wpd_meta_nonce'.$post_object->ID );
 
+		$check_value = get_post_meta( $post_object->ID, '_bcit_wpd_restrict_purchase', true ) ? 1 : 0;
+
 	?>
+		<p>
+			<label for="bcit-wpd-restrict-content-check">Should we restrict the purchase</label><br />
+			<input class="widefat" type="checkbox" id="bcit-wpd-restrict-content-check" name="bcit-wpd-restrict-content-check" value="1" <?php checked( $check_value, 1 ); ?> size="30" />
+		</p>
+
 		<p>
 			<label for="bcit-wpd-restrict-content-message">Restrict Content Message</label>
 			<input class="widefat" type="text" id="bcit-wpd-restrict-content-message" name="bcit-wpd-restrict-content-message" value="<?php echo esc_attr( get_post_meta( $post_object->ID, '_bcit_wpd_restrict_content_message', true ) ); ?>" size="30" />
