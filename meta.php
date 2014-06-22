@@ -44,6 +44,10 @@ class BCIT_WPD_Restrict_Purchase_Meta{
 
 	} // limit_purchase_button
 
+	public function show_custom_message(){
+			echo 'something';
+	}
+
 	/**
 	 * Adds our actions to start our metaboxes
 	 *
