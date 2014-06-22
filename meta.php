@@ -95,6 +95,13 @@ class BCIT_WPD_Restrict_Purchase_Meta{
 			update_post_meta( $post_id, '_bcit_wpd_restrict_content_message', esc_attr( $value ) );
 		}
 
+		if ( empty( $_POST['bcit-wpd-restrict-content-check'] ) ) {
+			delete_post_meta( absint( $post_id ), '_bcit_wpd_restrict_purchase' );
+		} else {
+			$value = $_POST['bcit-wpd-restrict-content-check'];
+			update_post_meta( $post_id, '_bcit_wpd_restrict_purchase', (bool) $value );
+		}
+
 	} // save_post_meta
 
 } // BCIT_WPD_Restrict_Purchase_Meta
