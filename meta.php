@@ -26,10 +26,15 @@ class BCIT_WPD_Restrict_Purchase_Meta{
 	public function limit_purchase_button(){
 
 		$limited_product = get_queried_object();
+		$is_limited = get_post_meta( $limited_product->ID, '_bcit_wpd_restrict_purchase', true ) ? true : false;
 
-		echo '<pre>';
-		print_r( $limited_product );
-		echo '</pre>';
+		if ( true == $is_limited ) {
+			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+			remove_action( 'woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30 );
+			remove_action( 'woocommerce_grouped_add_to_cart', 'woocommerce_grouped_add_to_cart', 30 );
+			remove_action( 'woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30 );
+			remove_action( 'woocommerce_external_add_to_cart', 'woocommerce_external_add_to_cart', 30 );
+		}
 
 	} // limit_purchase_button
 
