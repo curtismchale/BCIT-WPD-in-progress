@@ -34,6 +34,12 @@ class BCIT_WPD_Restrict_Purchase_Meta{
 			remove_action( 'woocommerce_grouped_add_to_cart', 'woocommerce_grouped_add_to_cart', 30 );
 			remove_action( 'woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30 );
 			remove_action( 'woocommerce_external_add_to_cart', 'woocommerce_external_add_to_cart', 30 );
+
+			add_action( 'woocommerce_single_product_summary', array( $this, 'show_custom_message' ), 30 );
+			add_action( 'woocommerce_simple_add_to_cart', array( $this, 'show_custom_message' ), 30 );
+			add_action( 'woocommerce_grouped_add_to_cart', array( $this, 'show_custom_message' ), 30 );
+			add_action( 'woocommerce_variable_add_to_cart', array( $this, 'show_custom_message' ), 30 );
+			add_action( 'woocommerce_external_add_to_cart', array( $this, 'show_custom_message' ), 30 );
 		}
 
 	} // limit_purchase_button
