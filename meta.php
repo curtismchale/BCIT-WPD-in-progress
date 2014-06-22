@@ -40,12 +40,24 @@ class BCIT_WPD_Restrict_Purchase_Meta{
 			add_action( 'woocommerce_grouped_add_to_cart', array( $this, 'show_custom_message' ), 30 );
 			add_action( 'woocommerce_variable_add_to_cart', array( $this, 'show_custom_message' ), 30 );
 			add_action( 'woocommerce_external_add_to_cart', array( $this, 'show_custom_message' ), 30 );
+
 		}
 
 	} // limit_purchase_button
 
 	public function show_custom_message(){
-			echo 'something';
+
+		$custom_product = get_queried_object();
+		$message = get_post_meta( $custom_product->ID, '_bcit_wpd_restrict_content_message', true );
+
+		if ( ! $message ){
+			$message = 'No product fo you';
+		}
+
+		$html = '<p>' . esc_attr( $message ) .'</p>';
+
+		echo $html;
+
 	}
 
 	/**
